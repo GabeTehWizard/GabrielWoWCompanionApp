@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GabrielWoWCompanionApp.View.TalentsPage"
+             Title="TalentsPage">
+
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+
+            <Image Source="wotlk_icon.png"
+                   Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"/>
+
+            <Label TextColor="White"
+                   Text="Priest Companion"
+                   FontSize="20"
+                   FontFamily="Wrath"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <Grid BackgroundColor="#1F1F1F">
+        <Border BackgroundColor="#1F1F1F" 
+            Stroke="#FFF" 
+            StrokeThickness="0.1" 
+            VerticalOptions="Start" 
+            HeightRequest="1" 
+            Margin="0,0,0,1"/>
+
+        <Grid>
+
+            <Label Text="Talent Content Here!" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+        </Grid>
+
+        <Border BackgroundColor="#1F1F1F" 
+            Stroke="#FFF" 
+            StrokeThickness="0.1" 
+            VerticalOptions="End" 
+            HeightRequest="1" 
+            Margin="0,1,0,0"/>
+    </Grid>
+</ContentPage>

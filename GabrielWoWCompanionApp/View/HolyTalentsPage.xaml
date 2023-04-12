@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:GabrielWoWCompanionApp.Model"
+             xmlns:viewmode="clr-namespace:GabrielWoWCompanionApp.ViewModel"
+             xmlns:converters="clr-namespace:GabrielWoWCompanionApp.Converters"
+             x:DataType="viewmode:HolyTalentsPageViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2021/toolkit"
+             x:Class="GabrielWoWCompanionApp.View.HolyTalentsPage"
+             Title="HolyTalentsPage">
+
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+
+            <Image Source="wotlk_icon.png"
+                   Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"/>
+
+            <Label TextColor="White"
+                   Text="Priest Companion"
+                   FontSize="20"
+                   FontFamily="Wrath"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <Grid BackgroundColor="#1F1F1F"
+          ColumnDefinitions="5*, 90*, 5*"
+          RowDefinitions="4*, 92*, 4*">
+        
+        <Border BackgroundColor="#1F1F1F" 
+            Stroke="#FFF" 
+            StrokeThickness="0.1" 
+            VerticalOptions="Start" 
+            HeightRequest="1" 
+            Margin="0,0,0,1"
+            Grid.ColumnSpan="3"/>
+
+        <ScrollView Grid.Column="1"
+                    Grid.Row="1">
+            <Grid RowDefinitions=".5*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, .5"
+                  ColumnDefinitions=".3*, 1*, 1*, 1*, 1*, .3*">
+
+                <Image Source="test.png"
+                       Grid.RowSpan="12"
+                       Grid.ColumnSpan="6"/>
+
+                <!--#region Holy Row 1 -->
+
+                <Grid Grid.Row="1"
+                      Grid.Column="2">
+                    
+                    <ImageButton Source="healing_focus_icon.png"
+                                 HeightRequest="47"
+                                 WidthRequest="47"/>
+
+                    <Label Text="1"
+                           TextColor="White"
+                           FontSize="Small"
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           Grid.Column="2"/>        
+                </Grid>
+                <!--<Button.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnIncreaseTalentTapped" />
+                        <TapGestureRecognizer Tapped="OnDecreaseTalentTapped" NumberOfTapsRequired="2" />
+                    </Button.GestureRecognizers>-->
+
+                <Grid Grid.Row="1"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="renew_icon.jpg"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[1].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="1"/>
+
+
+
+                    <Label Text="{Binding Talents[1].CurrentRank}"
+                           TextColor="White"
+                           FontSize="Small"
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Holy Row 2-->
+
+                <Image Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   BackgroundColor="Wheat"
+                   Grid.Row="2"
+                   Grid.Column="2"/>
+
+                <Image Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   BackgroundColor="Wheat"
+                   Grid.Row="2"
+                   Grid.Column="3"/>
+                <!--#endregion-->
+            </Grid>
+        </ScrollView>
+        
+
+        <Border BackgroundColor="#1F1F1F" 
+            Stroke="#FFF" 
+            StrokeThickness="0.1" 
+            VerticalOptions="End" 
+            HeightRequest="1" 
+            Margin="0,1,0,0"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"/>
+    </Grid>
+</ContentPage>

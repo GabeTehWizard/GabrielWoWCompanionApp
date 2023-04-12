@@ -1,0 +1,82 @@
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="GabrielWoWCompanionApp.AppShell"
+       xmlns:view="clr-namespace:GabrielWoWCompanionApp.View">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="#1F1F1F" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#1F1F1F"/>
+                <Setter Property="Shell.UnselectedColor" Value="#FFF"/>
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" ApplyToDerivedTypes="True" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!--<Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="wotlk_icon.png"
+                   Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"/>
+            <Label TextColor="Wheat"
+                   Text="{Binding CurrentItem.Title, Source={x:Reference shell}}"
+                   VerticalTextAlignment="Center"/>
+        </StackLayout>
+    </Shell.TitleView>-->
+
+    <TabBar>
+        
+        <Tab Title="Home"
+             Icon="home_icon.png">
+
+            <ShellContent 
+                Shell.NavBarIsVisible="true"
+                Title="Home"
+                ContentTemplate="{DataTemplate view:MainPage}"
+                Route="MainPage"/>
+        </Tab>
+
+        <Tab Title="Talents"
+             Icon="angel_wings.png">
+
+            <ShellContent 
+                Shell.NavBarIsVisible="true"
+                Title="Overview"
+                ContentTemplate="{DataTemplate view:TalentsPage}"
+                Route="TalentsPage"/>
+            
+            <ShellContent 
+                Shell.NavBarIsVisible="true"
+                Title="Holy"
+                ContentTemplate="{DataTemplate view:HolyTalentsPage}"
+                Route="HolyTalentsPage"/>
+
+            <ShellContent 
+                Shell.NavBarIsVisible="true"
+                Title="Discipline"
+                ContentTemplate="{DataTemplate view:DisciplineTalentsPage}"
+                Route="DisciplineTalentsPage"/>
+
+            <ShellContent 
+                Shell.NavBarIsVisible="true"
+                Title="Shadow"
+                ContentTemplate="{DataTemplate view:ShadowTalentsPage}"
+                Route="ShadowTalentsPage"/>
+        </Tab>
+
+        <Tab Title="Logs"
+             Icon="log_icon.png">
+
+            <ShellContent 
+                Shell.NavBarIsVisible="true"
+                Title="Logs"
+                ContentTemplate="{DataTemplate view:LogPage}"
+                Route="LogPage"/>
+        </Tab>
+    </TabBar>
+</Shell>

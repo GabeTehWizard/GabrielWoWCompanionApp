@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:GabrielWoWCompanionApp.Model"
+             xmlns:viewmode="clr-namespace:GabrielWoWCompanionApp.ViewModel"
+             xmlns:converters="clr-namespace:GabrielWoWCompanionApp.Converters"
+             x:DataType="viewmode:LogPageViewModel"
+             x:Class="GabrielWoWCompanionApp.View.LogPage"
+             Title="LogPage">
+
+    <ContentPage.Resources>
+        <converters:TruncateConverter x:Key="TruncateConverter" />
+        <converters:ValueToColorConverter x:Key="ValueToColorConverter" />
+        <converters:StringToImageSpecConverter x:Key="StringToImageSpecConverter" />
+        <converters:StringToImageBossConverter x:Key="StringToImageBossConverter" />
+    </ContentPage.Resources>
+    
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+
+            <Image Source="wotlk_icon.png"
+                   Aspect="AspectFill"
+                   WidthRequest="50"
+                   HeightRequest="50"/>
+
+            <Label TextColor="White"
+                   Text="Priest Companion"
+                   FontSize="20"
+                   FontFamily="Wrath"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <Grid BackgroundColor="#1F1F1F">
+
+        <Border BackgroundColor="#1F1F1F" 
+                Stroke="#FFF" 
+                StrokeThickness="0.1" 
+                VerticalOptions="Start" 
+                HeightRequest="1" 
+                Margin="0,0,0,1"/>
+
+        <Grid ColumnDefinitions="2*, 96*, 2*"
+                  RowDefinitions="3*, 96*,1*">
+
+            <Frame Grid.Row="1"
+                   Grid.Column="1"
+                   CornerRadius="0"
+                   Padding=".5"
+                   BorderColor="DarkGray"
+                   BackgroundColor="#1F1F1F">
+                
+                <Grid RowDefinitions="25*, 75*"
+                          BackgroundColor="#1F1F1F">
+
+                    <Border Grid.Row="0"
+                                Grid.Column="1"
+                                Stroke="#FFF" 
+                                StrokeThickness="0.1" 
+                                BackgroundColor="#191919">
+
+                        <Grid RowDefinitions="25*, 50*, 25*">
+                            <Label Grid.Row="0"
+                                       Text="25-PLAYER"
+                                       TextColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontSize="20"
+                                       FontFamily="Schib_Semibold"
+                                       FontAttributes="Bold"/>
+
+                            <Grid Grid.Row="1"
+                                      ColumnDefinitions="50*, 50*"
+                                      RowDefinitions="30*, 70*">
+
+                                <Label Text="Best Perf. Avg"
+                                           TextColor="White"
+                                           FontSize="18"
+                                           HorizontalOptions="Center"/>
+
+                                <Label Text="{Binding PerfAvg}"
+                                           FontSize="34"
+                                           TextColor="{Binding PerfAvg, Converter={converters:ValueToColorConverter}}"
+                                           Grid.Row="1"
+                                           FontFamily="Schib_Bold"
+                                           HorizontalOptions="Center"
+                                           TranslationY="-3"
+                                           FontAttributes="Bold"/>
+
+                                <StackLayout Grid.Row="1"
+                                                 Grid.Column="2">
+
+                                    <Grid ColumnDefinitions="65*, 5*, 20*, 10*">
+
+                                        <Label TextColor="White" 
+                                                   Text="Median Perf. Avg:" 
+                                                   HorizontalTextAlignment="End"/>
+
+                                        <Label Grid.Column="2" 
+                                                   TextColor="{Binding MedianPerfAverage, Converter={converters:ValueToColorConverter}}" 
+                                                   Text="{Binding MedianPerfAverage}" 
+                                                   HorizontalTextAlignment="Start" />
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="65*, 5*, 20*, 10*">
+
+                                        <Label TextColor="White" 
+                                                   Text="Kills Logged:" 
+                                                   HorizontalTextAlignment="End"/>
+
+                                        <Label Grid.Column="2" 
+                                                   TextColor="White" Text="{Binding KillsLogged}" 
+                                                   HorizontalTextAlignment="Start" />
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+
+                            <HorizontalStackLayout Grid.Row="2"
+                                                   HorizontalOptions="CenterAndExpand"
+                                                   VerticalOptions="Start"
+                                                   Spacing="3">
+
+                                <Label Text="All Star Points: "
+                                       TextColor="White"
+                                       FontAttributes="Bold"/>
+
+                                <Label Text="{Binding AllStarPoints}"
+                                           TextColor="#D1FA85"
+                                           FontAttributes="Bold"/>
+
+                                <Label FontFamily="Schib_Bold">
+                                    
+                                    <Label.FormattedText>
+                                        
+                                        <FormattedString>
+                                            
+                                            <Span Text="(" TextColor="White"
+                                                      FontAttributes="Bold"/>
+                                            
+                                            <Span Text="{Binding Rank}" TextColor="#E268A8"
+                                                      FontAttributes="Bold"/>
+                                            
+                                            <Span Text=")" TextColor="White"
+                                                      FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Image HeightRequest="22"
+                                           WidthRequest="22"
+                                           Source="power_word_shield_icon.png"
+                                           Aspect="AspectFill"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <Grid Grid.Row="1"
+                              Grid.Column="1"
+                              ColumnDefinitions="2*, 96*, 2*"
+                              RowDefinitions="1.5*, 80*,2*, 8*, 1.5*"
+                              BackgroundColor="#191919">
+
+                        <Frame Grid.Row="3"
+                               Grid.Column="1"
+                               Padding=".5"
+                               CornerRadius="0"
+                               BorderColor="Gray"
+                               BackgroundColor="#191919">
+
+                            <HorizontalStackLayout>
+
+                                <Label Text="Spec: "
+                                       TextColor="White"
+                                       TranslationY="8"
+                                       FontFamily="Schib_Bold"
+                                       Margin="8,0,0,0"/>
+
+                                <Picker ItemsSource="{Binding specialization}"
+                                        SelectedIndex="{Binding SelectedIndexSpec}"
+                                        TextColor="White"
+                                        x:Name="pickerSpec"
+                                        FontFamily="Schib_Bold"
+                                        WidthRequest="80"
+                                        VerticalOptions="CenterAndExpand"
+                                        Margin="0,0,0,0"/>
+
+                                <Label Text="Metric: "
+                                       TextColor="White"
+                                       TranslationY="8"
+                                       FontFamily="Schib_Bold"
+                                       Margin="8,0,0,0"/>
+
+                                <Picker ItemsSource="{Binding metric}"
+                                        SelectedIndex="{Binding SelectedIndexMetric}"
+                                        TextColor="White"
+                                        x:Name="pickerMetric"
+                                        FontFamily="Schib_Bold"
+                                        WidthRequest="80"
+                                        VerticalOptions="CenterAndExpand"
+                                        Margin="0,0,0,0"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+
+
+
+                        <Frame Grid.Row="1"
+                                   Grid.Column="1"
+                                   Padding="1"
+                                   CornerRadius="0"
+                                   BorderColor="Gray">
+
+                            <RefreshView Command="{Binding GetLogsCommand}" 
+                                         IsRefreshing="{Binding IsRefreshing}"
+                                         BackgroundColor="#191919">
+
+                                <CollectionView ItemsSource="{Binding HealingLogs}"
+                                                    SelectionMode="None"
+                                                    x:Name="cvParses"
+                                                    BackgroundColor="#191919">
+
+                                    <CollectionView.EmptyView>
+
+                                        <StackLayout VerticalOptions="Center"
+                                                     Spacing="30">
+                                            
+                                            <Image Source="scroll.png"
+                                                   HeightRequest="140"
+                                                   WidthRequest="200"
+                                                   Aspect="AspectFill"/>
+
+                                            <Label Text="Scroll Down to Load!"
+                                                   TextColor="White"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   FontSize="30"/>
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+
+                                    <CollectionView.ItemTemplate>
+
+                                        <DataTemplate x:DataType="model:HealingLogs">
+
+                                            <Frame BorderColor="DimGray"
+                                                       CornerRadius="0"
+                                                       Padding=".1,.1,.1,1">
+
+                                                <Grid ColumnDefinitions="78*, 22*"
+                                                      RowDefinitions="30"
+                                                      BackgroundColor="#191919">
+
+                                                    <HorizontalStackLayout Spacing="10"
+                                                                           BackgroundColor="#191919">
+
+                                                        <Image HeightRequest="25"
+                                                               Aspect="AspectFill"
+                                                                   WidthRequest="25"
+                                                                   HorizontalOptions="End"
+                                                                   Source="{Binding EncounterName, Converter={converters:StringToImageBossConverter}}"
+                                                                   Margin="8,0,0,0"/>
+
+                                                        <Label Grid.Column="0"
+                                                               TranslationY="3"
+                                                               FontFamily="Schib_Bold"
+                                                               Text="{Binding EncounterName}"
+                                                               TextColor="#B4BDEF"/>
+                                                    </HorizontalStackLayout>
+                                                    
+                                                    <Frame Grid.Column="1"
+                                                           CornerRadius="0"
+                                                           Padding=".7,0,0,0"
+                                                           BorderColor="Gray"
+                                                           BackgroundColor="#191919">
+                                                        
+                                                        <Grid BackgroundColor="#191919">
+                                                            <HorizontalStackLayout HorizontalOptions="End"
+                                                                                   Spacing="5">
+                                                                
+                                                                <Label FontFamily="Schib_Bold"
+                                                                   Text="{Binding Percentile, Converter={StaticResource TruncateConverter}}"
+                                                                   TextColor="{Binding Percentile, Converter={StaticResource ValueToColorConverter}}"
+                                                                   HorizontalOptions="End"
+                                                                   TranslationY="3"/>
+
+                                                                <Image HeightRequest="25"
+                                                                   WidthRequest="25"
+                                                                   HorizontalOptions="End"
+                                                                   Source="{Binding Spec, Converter={converters:StringToImageSpecConverter}}"
+                                                                   Margin="0,0,5,0"/>
+                                                            </HorizontalStackLayout>
+                                                        </Grid>
+                                                    </Frame>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </RefreshView>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </Grid>
+
+        <Border BackgroundColor="#1F1F1F" 
+                Stroke="#FFF" 
+                StrokeThickness="0.1" 
+                VerticalOptions="End" 
+                HeightRequest="1" 
+                Margin="0,1,0,0"/>
+    </Grid>
+</ContentPage>
