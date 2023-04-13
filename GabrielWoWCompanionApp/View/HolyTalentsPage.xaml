@@ -26,9 +26,13 @@
         </StackLayout>
     </Shell.TitleView>
 
+    <ContentPage.Resources>
+        <converters:GrayscaleConverter x:Key="GrayscaleConverter" />
+    </ContentPage.Resources>
+    
     <Grid BackgroundColor="#1F1F1F"
           ColumnDefinitions="5*, 90*, 5*"
-          RowDefinitions="4*, 92*, 4*">
+          RowDefinitions="1*, 7*, 88*, 4*">
         
         <Border BackgroundColor="#1F1F1F" 
             Stroke="#FFF" 
@@ -38,45 +42,116 @@
             Margin="0,0,0,1"
             Grid.ColumnSpan="3"/>
 
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="3"
+              VerticalOptions="Center"
+              ColumnDefinitions="5*,5*,78*, 12*">
+
+            <Image HeightRequest="20"
+                   Grid.Column="1"
+                   WidthRequest="20"
+                   Source="guardian_spirit_icon.png"/>
+            
+            <Label Text="Holy"
+                   Grid.Column="2"
+                   TextColor="White"
+                   FontFamily="Schib_Medium"
+                   FontSize="18"
+                   Margin="8,0,0,3"/>
+
+            <Label Text="{Binding TotalTalentCount}"
+                   HorizontalOptions="End"
+                   Grid.Column="2"
+                   TextColor="Wheat"
+                   FontSize="18"
+                   Margin="0,0,8,0"
+                   FontFamily="Schib_Medium"/>
+
+            <Button Text="X"
+                    HorizontalOptions="Start"
+                    Padding="0"
+                    BackgroundColor="#C0AA87"
+                    TextColor="Black"
+                    Grid.Column="3"
+                    CornerRadius="120"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    FontFamily="Schib_Medium"/>
+        </Grid>
+
+            
         <ScrollView Grid.Column="1"
-                    Grid.Row="1">
-            <Grid RowDefinitions=".5*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, .5"
+                    Grid.Row="2">
+            
+            <Grid RowDefinitions=".5*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, .5"
                   ColumnDefinitions=".3*, 1*, 1*, 1*, 1*, .3*">
 
                 <Image Source="test.png"
                        Grid.RowSpan="12"
                        Grid.ColumnSpan="6"/>
 
+                <Rectangle Grid.Row="3" Grid.Column="3" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+                <Rectangle Grid.Row="6" Grid.Column="2" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+                
                 <!--#region Holy Row 1 -->
 
                 <Grid Grid.Row="1"
-                      Grid.Column="2">
-                    
-                    <ImageButton Source="healing_focus_icon.png"
-                                 HeightRequest="47"
-                                 WidthRequest="47"/>
-
-                    <Label Text="1"
-                           TextColor="White"
-                           FontSize="Small"
-                           HorizontalTextAlignment="End"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
-                           Grid.Row="1"
-                           Grid.Column="2"/>        
-                </Grid>
-                <!--<Button.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnIncreaseTalentTapped" />
-                        <TapGestureRecognizer Tapped="OnDecreaseTalentTapped" NumberOfTapsRequired="2" />
-                    </Button.GestureRecognizers>-->
-
-                <Grid Grid.Row="1"
-                      Grid.Column="3">
+                      Grid.Column="1">
 
                     <Image HeightRequest="47"
                            WidthRequest="47"
-                           Source="renew_icon.jpg"/>
+                           Source="{Binding Talents[0].DisplayIconPath}" />
 
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[0].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="0"/>
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+                        
+                        <Label.FormattedText>
+                            
+                            <FormattedString>
+                                
+                                <Span Text="{Binding Talents[0].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[0].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+                                
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[1].DisplayIconPath}" />
+                    
                     <Button HeightRequest="47"
                             WidthRequest="47"
                             MaximumHeightRequest="47"
@@ -88,34 +163,1380 @@
 
 
 
-                    <Label Text="{Binding Talents[1].CurrentRank}"
-                           TextColor="White"
-                           FontSize="Small"
-                           HorizontalTextAlignment="End"
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
                            VerticalTextAlignment="End"
                            Margin="0,0,5,5"
                            Grid.Row="1"
-                           Grid.Column="2"/>
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[1].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[1].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </Grid>
 
+                <Grid Grid.Row="1"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[2].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[2].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="2"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[2].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[2].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                
                 <!--#endregion-->
 
                 <!--#region Holy Row 2-->
 
-                <Image Aspect="AspectFill"
-                   WidthRequest="50"
-                   HeightRequest="50"
-                   BackgroundColor="Wheat"
-                   Grid.Row="2"
-                   Grid.Column="2"/>
+                <Grid Grid.Row="2"
+                      Grid.Column="2">
 
-                <Image Aspect="AspectFill"
-                   WidthRequest="50"
-                   HeightRequest="50"
-                   BackgroundColor="Wheat"
-                   Grid.Row="2"
-                   Grid.Column="3"/>
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[3].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[3].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="3"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[3].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[3].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[4].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[4].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="4"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[4].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[4].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
                 <!--#endregion-->
+
+                <!--#region Holy Row 3-->
+
+                <Grid Grid.Row="3"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[5].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[5].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="5"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[5].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[5].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[6].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[6].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="6"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[6].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[6].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Grid.Column="4">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[7].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[7].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="7"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[7].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[7].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Holy Row 4-->
+
+                <Grid Grid.Row="4"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[8].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[8].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="8"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[8].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[8].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="4"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[9].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[9].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="9"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[9].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[9].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="4"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[10].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[10].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="10"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[10].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[10].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Holy Row 5-->
+
+                <Grid Grid.Row="5"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[11].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[11].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="11"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[11].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[11].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="5"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[12].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[12].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="12"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[12].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[12].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="5"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[13].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[13].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="13"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[13].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[13].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                
+                <!--#endregion-->
+                
+                <!--#region Holy Row 6-->
+
+                <Grid Grid.Row="6"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[14].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[14].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="14"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[14].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[14].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="6"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[15].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[15].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="15"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[15].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[15].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Holy Row 7-->
+
+                <Grid Grid.Row="7"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[16].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[16].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="16"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[16].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[16].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="7"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[17].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[17].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="17"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[17].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[17].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="7"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[18].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[18].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="18"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[18].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[18].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Holy Row 8-->
+
+                <Grid Grid.Row="8"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[19].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[19].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="19"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[19].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[19].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+
+                <Grid Grid.Row="8"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[20].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[20].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="20"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[20].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[20].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+
+                <Grid Grid.Row="8"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[21].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[21].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="21"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[21].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[21].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Grid Row 9-->
+
+
+                <Grid Grid.Row="9"
+                      Grid.Column="1">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[22].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[22].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="22"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[22].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[22].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+
+                <Grid Grid.Row="9"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[23].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[23].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="23"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[23].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[23].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+
+                <Grid Grid.Row="9"
+                      Grid.Column="3">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[24].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[24].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="24"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[24].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[24].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Grid Row 10-->
+
+
+                <Grid Grid.Row="10"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[25].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[25].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="25"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[25].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[25].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Grid Row 11-->
+
+
+                <Grid Grid.Row="11"
+                      Grid.Column="2">
+
+                    <Image HeightRequest="47"
+                           WidthRequest="47"
+                           Source="{Binding Talents[26].DisplayIconPath}"/>
+
+                    <Button HeightRequest="47"
+                            WidthRequest="47"
+                            MaximumHeightRequest="47"
+                            MaximumWidthRequest="47"
+                            ToolTipProperties.Text="{Binding Talents[27].Description}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding IncreaseTalentRankCommand}"
+                            CommandParameter="26"/>
+
+
+
+                    <Label TextColor="White"
+                           FontSize="12"
+                           VerticalOptions="End"
+                           HeightRequest="14"
+                           WidthRequest="26"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           Margin="0,0,5,5"
+                           Grid.Row="1"
+                           BackgroundColor="#1F1F1F"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[26].CurrentRank}" 
+                                      TextColor="White"            
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="/" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                                <Span Text="{Binding Talents[26].MaxRank}" 
+                                      TextColor="White"         
+                                      FontAttributes="Bold"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+                
             </Grid>
         </ScrollView>
         
