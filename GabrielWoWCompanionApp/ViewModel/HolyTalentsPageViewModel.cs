@@ -1,4 +1,5 @@
 ﻿using GabrielWoWCompanionApp.Services;
+using GabrielWoWCompanionApp.View;
 
 namespace GabrielWoWCompanionApp.ViewModel;
 
@@ -6,6 +7,10 @@ public partial class HolyTalentsPageViewModel : BaseViewModel
 {
     [ObservableProperty]
     private static int totalTalentCount = 0;
+    internal int selectedProfile;
+
+    public delegate void CheckProfile();
+    public event CheckProfile CheckProfileEvent;
 
     partial void OnTotalTalentCountChanged(int value)
     {
@@ -21,6 +26,9 @@ public partial class HolyTalentsPageViewModel : BaseViewModel
     {
         // Initialize the collection of talents
         Talents = TalentService.GetHolyTalents();
+
+        selectedProfile = TalentProfiles.SelectedProfile;
+        TalentProfiles.LoadTalents(Talents, TalentProfiles.Profiles[TalentProfiles.SelectedProfile].HolyTalentArr);
     }
 
     [RelayCommand]
@@ -32,7 +40,9 @@ public partial class HolyTalentsPageViewModel : BaseViewModel
             if (Talents[parsedIndex].ReferenceTalent != null && Talents[parsedIndex].ReferenceTalent.CurrentRank != Talents[parsedIndex].ReferenceTalent.MaxRank) return;
             
             Talents[parsedIndex].CurrentRank++;
+            TalentProfiles.Profiles[TalentProfiles.SelectedProfile].HolyTalentArr[parsedIndex] = Talents[parsedIndex].CurrentRank;
             TotalTalentCount++;
+            TalentProfiles.Profiles[TalentProfiles.SelectedProfile].TotalCount++;
         }
     }
 }
