@@ -67,8 +67,10 @@ public class TalentService
             new() { Id = 26, Name = "Guardian Spirit", MaxRank = 1, DescriptionTemplate = "Calls upon a guardian spirit to watch over the friendly target. The spirit increases the healing received by the target by 40%, and also prevents the target from dying by sacrificing itself.  This sacrifice terminates the effect but heals the target of 50% of their maximum health. Lasts 10 sec.", TotalRequiredTalents = 50, IconPath = "guardian_spirit_icon.jpg" }
         };
 
-        talents[10].ReferenceTalent = talents[4];
-        talents[17].ReferenceTalent = talents[12];
+        talents[10].PreRequisitieTalent = talents[4];
+        talents[17].PreRequisitieTalent = talents[12];
+        talents[4].DependantTalent = talents[10];
+        talents[12].DependantTalent = talents[17];
         return talents;
     }
 }

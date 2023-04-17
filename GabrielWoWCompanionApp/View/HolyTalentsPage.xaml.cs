@@ -10,6 +10,15 @@ public partial class HolyTalentsPage : ContentPage
         viewModel.CheckProfileEvent += TalentCheckEventCall;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (BindingContext is HolyTalentsPageViewModel viewModel)
+        {
+            viewModel.OnAppearing();
+        }
+    }
+
     protected override void OnDisappearing()
     {
         base.OnDisappearing();

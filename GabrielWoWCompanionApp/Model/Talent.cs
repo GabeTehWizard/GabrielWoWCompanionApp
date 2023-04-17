@@ -43,7 +43,9 @@ namespace GabrielWoWCompanionApp.Model
         [ObservableProperty]
         public int currentRank;
 
-        public Talent ReferenceTalent { get; set; }
+        public Talent PreRequisitieTalent { get; set; }
+
+        public Talent DependantTalent { get; set; }
 
         partial void OnCurrentRankChanged(int value)
         {
@@ -75,7 +77,7 @@ namespace GabrielWoWCompanionApp.Model
 
         public void ReplaceIcon()
         {
-            if (this.TotalCount < TotalRequiredTalents || this.TotalCount == 71 || this.ReferenceTalent != null && this.ReferenceTalent.CurrentRank < this.ReferenceTalent.MaxRank)
+            if (this.TotalCount < TotalRequiredTalents || this.TotalCount == 71 || this.PreRequisitieTalent != null && this.PreRequisitieTalent.CurrentRank < this.PreRequisitieTalent.MaxRank)
             {
                 if (this.CurrentRank != 0) 
                     this.DisplayIconPath = this.IconPath;

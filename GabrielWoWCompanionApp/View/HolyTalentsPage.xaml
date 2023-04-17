@@ -28,6 +28,8 @@
 
     <ContentPage.Resources>
         <converters:GrayscaleConverter x:Key="GrayscaleConverter" />
+        <converters:AddTalentBorderConverter x:Key="AddTalentBorderConverter"/>
+        <converters:MinusTalentBorderConverter x:Key="MinusTalentBorderConverter"/>
     </ContentPage.Resources>
     
     <Grid BackgroundColor="#1F1F1F"
@@ -45,13 +47,13 @@
         <Grid Grid.Row="1"
               Grid.ColumnSpan="3"
               VerticalOptions="Center"
-              ColumnDefinitions="5*,5*,78*, 12*">
+              ColumnDefinitions="5*,5*,38*, 47*, 5*">
 
             <Image HeightRequest="20"
                    Grid.Column="1"
                    WidthRequest="20"
                    Source="guardian_spirit_icon.png"/>
-            
+
             <Label Text="Holy"
                    Grid.Column="2"
                    TextColor="White"
@@ -59,24 +61,58 @@
                    FontSize="18"
                    Margin="8,0,0,3"/>
 
-            <Label Text="{Binding TotalTalentCount}"
-                   HorizontalOptions="End"
-                   Grid.Column="2"
-                   TextColor="Wheat"
-                   FontSize="18"
-                   Margin="0,0,8,0"
-                   FontFamily="Schib_Medium"/>
+            <HorizontalStackLayout Spacing="5"
+                                   Grid.Column="3"
+                                   HorizontalOptions="EndAndExpand">
 
-            <Button Text="X"
-                    HorizontalOptions="Start"
-                    Padding="0"
-                    BackgroundColor="#C0AA87"
-                    TextColor="Black"
-                    Grid.Column="3"
-                    CornerRadius="120"
-                    HeightRequest="20"
-                    WidthRequest="20"
-                    FontFamily="Schib_Medium"/>
+                <HorizontalStackLayout Spacing="4">
+                    
+                    <Button HeightRequest="22"
+                            WidthRequest="22"
+                            FontAttributes="Bold"
+                            Padding="0"
+                            CornerRadius="120"
+                            BackgroundColor="#027324"
+                            Text="+"
+                            TextColor="Black"
+                            BorderColor="{Binding AddTalentFlag, Converter={converters:AddTalentBorderConverter}}"
+                            BorderWidth="1"
+                            Command="{Binding ChangeSelectionModeCommand}"
+                            CommandParameter="Add"/>
+
+                    <Button Grid.Column="3"
+                            HeightRequest="22"
+                            WidthRequest="22"
+                            FontAttributes="Bold"
+                            Padding="0"
+                            CornerRadius="120"
+                            BackgroundColor="#ff3632"
+                            BorderColor="{Binding AddTalentFlag, Converter={converters:MinusTalentBorderConverter}}"
+                            BorderWidth="1"
+                            Text="-"
+                            TextColor="Black"
+                            Margin="0,0,4,0"
+                            Command="{Binding ChangeSelectionModeCommand}"
+                            CommandParameter="Subtract"/>
+                </HorizontalStackLayout>
+
+                <Label Text="{Binding TotalTalentCount}"
+                       HorizontalOptions="End"
+                       TextColor="Wheat"
+                       FontSize="18"
+                       Margin="0,0,8,0"
+                       FontFamily="Schib_Medium"/>
+                
+                <Button Text="X"
+                        HorizontalOptions="Start"
+                        Padding="0"
+                        BackgroundColor="#C0AA87"
+                        TextColor="Black"
+                        Grid.Column="4"
+                        CornerRadius="120"
+                        HeightRequest="22"
+                        WidthRequest="22"/>
+            </HorizontalStackLayout>
         </Grid>
 
             
