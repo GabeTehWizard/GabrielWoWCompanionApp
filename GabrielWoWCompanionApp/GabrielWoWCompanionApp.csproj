@@ -148,7 +148,7 @@
 	  <None Remove="Resources\Images\gray_shadow_focus_icon.jpg" />
 	  <None Remove="Resources\Images\gray_shadow_power_icon.jpg" />
 	  <None Remove="Resources\Images\gray_shadow_reach_icon.jpg" />
-	  <None Remove="Resources\Images\gray_shadow_weaving.jpg" />
+	  <None Remove="Resources\Images\gray_shadow_weaving_icon.jpg" />
 	  <None Remove="Resources\Images\gray_silence_icon.jpg" />
 	  <None Remove="Resources\Images\gray_silent_resolve_icon.jpg" />
 	  <None Remove="Resources\Images\gray_sol_icon.jpg" />
