@@ -33,10 +33,10 @@ public partial class HolyTalentsPage : ContentPage
     {
         if (BindingContext is HolyTalentsPageViewModel viewModel)
         {
-            if (viewModel.selectedProfile != TalentProfiles.SelectedProfile)
+            if (viewModel.selectedProfile != viewModel.profileService.SelectedProfile)
             {
-                viewModel.selectedProfile = TalentProfiles.SelectedProfile;
-                TalentProfiles.LoadTalents(viewModel.Talents, TalentProfiles.Profiles[TalentProfiles.SelectedProfile].HolyTalentArr);
+                viewModel.selectedProfile = viewModel.profileService.SelectedProfile;
+                viewModel.LoadTalents(viewModel.PageSpecilization);
             }
         }
     }

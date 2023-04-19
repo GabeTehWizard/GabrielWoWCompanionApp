@@ -28,7 +28,7 @@
                    VerticalTextAlignment="Center"/>
         </StackLayout>
     </Shell.TitleView>-->
-
+    
     <TabBar>
         
         <Tab Title="Home"

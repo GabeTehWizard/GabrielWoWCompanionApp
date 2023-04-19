@@ -1,25 +1,35 @@
 ﻿using HtmlAgilityPack;
 using System.Net.Http.Json;
+using static System.Net.WebRequestMethods;
 
 namespace GabrielWoWCompanionApp.Services;
 
 public  class WarcraftLogsService
 {
-    HttpClient httpClient;
-    List<HealingLogs> parseList = new();
+    #region Data Fields
+    // Variables for Log Data Calculations
     int killsLogged;
     decimal allStarPoints;
     decimal rank;
     decimal perfAverage;
+    List<HealingLogs> parseList = new();
+    string warcraftLogsApiURL = "https://classic.warcraftlogs.com/v1";
+    string apiKey = "8f7cffbff18ed8b91f25f5580f3f0e6a"; // My Custom Api Key from Warcraft Logs Website
 
+    HttpClient httpClient; // Client to Connect to HTTP Server
+    #endregion
+
+    #region Constructors
     public WarcraftLogsService()
     {
         httpClient = new HttpClient();
     }
+    #endregion
 
+    #region Methods
     public async Task<List<HealingLogs>> GetRankings(string spec, string metric)
     {
-        var url = $"https://classic.warcraftlogs.com/v1/rankings/character/Cla%C3%AFra/Whitemane/US?metric={metric}&timeframe=historical&api_key=8f7cffbff18ed8b91f25f5580f3f0e6a";
+        var url = $"{warcraftLogsApiURL}/rankings/character/Cla%C3%AFra/Whitemane/US?metric={metric}&timeframe=historical&api_key={apiKey}";
 
         var response = await httpClient.GetAsync(url);
 
@@ -39,7 +49,7 @@ public  class WarcraftLogsService
     {
         if (killsLogged > 0) return killsLogged;
 
-        var url = "https://classic.warcraftlogs.com/v1/parses/character/Cla%C3%AFra/Whitemane/US?metric=hps&class=7&spec=1&timeframe=historical&api_key=8f7cffbff18ed8b91f25f5580f3f0e6a";
+        var url = $"{warcraftLogsApiURL}/parses/character/Cla%C3%AFra/Whitemane/US?metric=hps&class=7&spec=1&timeframe=historical&api_key={apiKey}";
 
         var response = await httpClient.GetAsync(url);
 
@@ -93,12 +103,5 @@ public  class WarcraftLogsService
 
         return new List<decimal>() { allStarPoints, rank, perfAverage };
     }
-}
-
-public static class WarcraftLogsClient
-{
-    private static HttpClient _client;
-    private static string clientProjectName = "WoWFinalSchoolProject";
-    private static string clientID = "98e300ce-3604-4e8a-a04f-ddccbe85bf1e";
-    private static string clientSecret = "5ctgbRkKcMwVKz0HXjQ8wuYy4X5pYLsJ09ewLirB";  
+    #endregion
 }

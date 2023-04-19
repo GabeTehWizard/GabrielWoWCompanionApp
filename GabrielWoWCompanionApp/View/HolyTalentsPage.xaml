@@ -31,7 +31,7 @@
         <converters:AddTalentBorderConverter x:Key="AddTalentBorderConverter"/>
         <converters:MinusTalentBorderConverter x:Key="MinusTalentBorderConverter"/>
     </ContentPage.Resources>
-    
+
     <Grid BackgroundColor="#1F1F1F"
           ColumnDefinitions="5*, 90*, 5*"
           RowDefinitions="1*, 7*, 88*, 4*">
@@ -134,30 +134,16 @@
                 <Grid Grid.Row="1"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[0].DisplayIconPath}" />
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[0].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="0"/>
 
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
                         
                         <Label.FormattedText>
@@ -165,16 +151,13 @@
                             <FormattedString>
                                 
                                 <Span Text="{Binding Talents[0].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[0].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
                                 
                             </FormattedString>
                         </Label.FormattedText>
@@ -184,32 +167,16 @@
                 <Grid Grid.Row="1"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[1].DisplayIconPath}" />
-                    
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[1].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="1"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -217,16 +184,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[1].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[1].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -236,32 +200,16 @@
                 <Grid Grid.Row="1"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[2].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[2].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="2"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -269,16 +217,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[2].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[2].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -292,32 +237,16 @@
                 <Grid Grid.Row="2"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[3].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[3].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="3"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -325,16 +254,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[3].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[3].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -344,32 +270,16 @@
                 <Grid Grid.Row="2"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[4].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[4].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="4"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -377,16 +287,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[4].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[4].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -399,32 +306,16 @@
                 <Grid Grid.Row="3"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[5].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[5].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="5"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -432,16 +323,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[5].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[5].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -451,32 +339,16 @@
                 <Grid Grid.Row="3"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[6].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[6].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="6"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -484,16 +356,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[6].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[6].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -503,32 +372,16 @@
                 <Grid Grid.Row="3"
                       Grid.Column="4">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[7].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[7].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="7"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -536,16 +389,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[7].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[7].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -558,32 +408,16 @@
                 <Grid Grid.Row="4"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[8].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[8].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="8"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -591,16 +425,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[8].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[8].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -610,32 +441,16 @@
                 <Grid Grid.Row="4"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[9].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[9].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="9"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -643,16 +458,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[9].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[9].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -662,32 +474,16 @@
                 <Grid Grid.Row="4"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[10].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[10].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="10"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -695,16 +491,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[10].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[10].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -717,32 +510,16 @@
                 <Grid Grid.Row="5"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[11].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[11].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="11"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -750,16 +527,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[11].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[11].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -769,32 +543,16 @@
                 <Grid Grid.Row="5"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[12].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[12].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="12"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -802,16 +560,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[12].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[12].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -821,32 +576,18 @@
                 <Grid Grid.Row="5"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[13].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[13].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="13"/>
 
 
 
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -854,16 +595,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[13].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[13].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -877,32 +615,16 @@
                 <Grid Grid.Row="6"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[14].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[14].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="14"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -910,16 +632,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[14].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[14].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -929,32 +648,16 @@
                 <Grid Grid.Row="6"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[15].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[15].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="15"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -962,16 +665,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[15].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[15].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -984,32 +684,16 @@
                 <Grid Grid.Row="7"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[16].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[16].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="16"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1017,16 +701,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[16].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[16].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1036,32 +717,16 @@
                 <Grid Grid.Row="7"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[17].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[17].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="17"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1069,16 +734,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[17].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[17].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1088,32 +750,16 @@
                 <Grid Grid.Row="7"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[18].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[18].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="18"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1121,16 +767,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[18].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[18].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1143,32 +786,16 @@
                 <Grid Grid.Row="8"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[19].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[19].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="19"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1176,16 +803,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[19].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[19].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1196,32 +820,16 @@
                 <Grid Grid.Row="8"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[20].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[20].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="20"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1229,16 +837,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[20].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[20].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1249,32 +854,16 @@
                 <Grid Grid.Row="8"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[21].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[21].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="21"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1282,16 +871,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[21].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[21].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1305,32 +891,16 @@
                 <Grid Grid.Row="9"
                       Grid.Column="1">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[22].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[22].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="22"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1338,16 +908,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[22].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[22].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1358,32 +925,16 @@
                 <Grid Grid.Row="9"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[23].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[23].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="23"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1391,16 +942,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[23].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[23].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1411,32 +959,16 @@
                 <Grid Grid.Row="9"
                       Grid.Column="3">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[24].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[24].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="24"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1444,16 +976,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[24].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[24].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1467,32 +996,16 @@
                 <Grid Grid.Row="10"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[25].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[25].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="25"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1500,16 +1013,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[25].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[25].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>
@@ -1523,32 +1033,16 @@
                 <Grid Grid.Row="11"
                       Grid.Column="2">
 
-                    <Image HeightRequest="47"
-                           WidthRequest="47"
+                    <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[26].DisplayIconPath}"/>
 
-                    <Button HeightRequest="47"
-                            WidthRequest="47"
-                            MaximumHeightRequest="47"
-                            MaximumWidthRequest="47"
+                    <Button Style="{StaticResource TalentButtonStyle}"
                             ToolTipProperties.Text="{Binding Talents[27].Description}"
-                            BackgroundColor="Transparent"
-                            Command="{Binding IncreaseTalentRankCommand}"
+                            Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="26"/>
 
-
-
-                    <Label TextColor="White"
-                           FontSize="12"
-                           VerticalOptions="End"
-                           HeightRequest="14"
-                           WidthRequest="26"
-                           HorizontalOptions="End"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="End"
-                           Margin="0,0,5,5"
+                    <Label Style="{StaticResource TalentRankLabel}"
                            Grid.Row="1"
-                           BackgroundColor="#1F1F1F"
                            Grid.Column="2">
 
                         <Label.FormattedText>
@@ -1556,16 +1050,13 @@
                             <FormattedString>
 
                                 <Span Text="{Binding Talents[26].CurrentRank}" 
-                                      TextColor="White"            
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="/" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                                 <Span Text="{Binding Talents[26].MaxRank}" 
-                                      TextColor="White"         
-                                      FontAttributes="Bold"/>
+                                      Style="{StaticResource TalentRankSpan}"/>
 
                             </FormattedString>
                         </Label.FormattedText>

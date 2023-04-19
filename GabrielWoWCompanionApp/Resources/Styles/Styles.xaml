@@ -4,6 +4,37 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Style x:Key="TalentRankLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="HeightRequest" Value="14" />
+        <Setter Property="WidthRequest" Value="26" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="End" />
+        <Setter Property="Margin" Value="0,0,5,5" />
+        <Setter Property="BackgroundColor" Value="#1F1F1F" />
+    </Style>
+
+    <Style x:Key="TalentButtonImage" TargetType="Image">
+        <Setter Property="HeightRequest" Value="47" />
+        <Setter Property="WidthRequest" Value="47" />
+    </Style>
+
+    <Style x:Key="TalentButtonStyle" TargetType="Button">
+        <Setter Property="HeightRequest" Value="47" />
+        <Setter Property="WidthRequest" Value="47" />
+        <Setter Property="MaximumHeightRequest" Value="47" />
+        <Setter Property="MaximumWidthRequest" Value="47" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="TalentRankSpan" TargetType="Span">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+    
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
     </Style>

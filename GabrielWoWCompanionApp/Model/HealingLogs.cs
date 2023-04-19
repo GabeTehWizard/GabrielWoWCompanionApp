@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace GabrielWoWCompanionApp.Model
 {
+    /// <summary>
+    /// The HealingLogs class is used to represent the World of Warcraft fight log data from
+    /// warcraft logs.
+    /// </summary>
     public class HealingLogs 
     {        
             public int EncounterID { get; set; }

@@ -30,6 +30,7 @@ public static class MauiProgram
 #endif
         // Services
         builder.Services.AddSingleton<WarcraftLogsService>();
+        builder.Services.AddSingleton<TalentProfileService>();
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
 
         // View Models

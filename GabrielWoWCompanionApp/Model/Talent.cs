@@ -40,12 +40,16 @@ namespace GabrielWoWCompanionApp.Model
 
         public double TalentModifier2 { get; set; }
 
+        public double TalentModifier3 { get; set; }
+
         [ObservableProperty]
         public int currentRank;
 
         public Talent PreRequisitieTalent { get; set; }
 
         public Talent DependantTalent { get; set; }
+
+        public Talent DependantTalent2 { get; set; }
 
         partial void OnCurrentRankChanged(int value)
         {
@@ -56,8 +60,12 @@ namespace GabrielWoWCompanionApp.Model
 
         public void ReplaceDescription()
         {
-            if (TalentModifier2 != 0)
-                this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier), Math.Round(currentRank * TalentModifier2));
+            if (TalentModifier3 != 0) // For Focused Will Talent
+            {
+                this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1), Math.Round(currentRank * TalentModifier2, 1) + 1, Math.Round(currentRank * TalentModifier3, 1) + 2);
+            }
+            else if (TalentModifier2 != 0)
+                this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier,1) + (this.Name == "Rapture" ? 1 : 0), Math.Round(currentRank * TalentModifier2, 1));
             else
                 this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1));
         }
@@ -86,8 +94,6 @@ namespace GabrielWoWCompanionApp.Model
             }
             else
                 this.DisplayIconPath = this.IconPath;
-
-            
         }
     }
 }
