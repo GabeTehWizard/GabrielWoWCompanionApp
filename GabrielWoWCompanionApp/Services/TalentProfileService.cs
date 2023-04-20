@@ -25,7 +25,7 @@ public class TalentProfile
     public string Name { get; set; }
     public int TotalCount { get; set; }
     public int DisciplineTalentCount { get; set; }
-    public int[] DisciplineTalentArr { get; set; } = new int[27];
+    public int[] DisciplineTalentArr { get; set; } = new int[28];
     public int HolyTalentCount { get; set; } 
     public int[] HolyTalentArr { get; set; } = new int[27];
     public int ShadowTalentCount { get; set; }

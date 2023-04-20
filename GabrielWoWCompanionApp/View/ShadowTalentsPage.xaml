@@ -120,16 +120,23 @@
                     Grid.Row="2">
 
             <Grid RowDefinitions=".5*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, .5"
-                  ColumnDefinitions=".3*, 1*, 1*, 1*, 1*, .3*">
+                  ColumnDefinitions=".3*, 1*, 1*, 1*, 1*, .3*"
+                  MaximumWidthRequest="300">
 
-                <Image Source="test.png"
+                <Image Source="xyrella_talent.png"
                        Grid.RowSpan="12"
                        Grid.ColumnSpan="6"/>
 
-                <Rectangle Grid.Row="3" Grid.Column="3" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+                <Rectangle Grid.Row="1" Grid.Column="1" WidthRequest="30" TranslationX="38" HeightRequest="9" Fill="#555555"/>
+                <Rectangle Grid.Row="5" Grid.Column="2" WidthRequest="30" TranslationX="38" HeightRequest="9" Fill="#555555" />
+                <Rectangle Grid.Row="4" Grid.Column="1" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
                 <Rectangle Grid.Row="6" Grid.Column="2" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+                <Rectangle Grid.Row="8" Grid.Column="2" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+                <Rectangle Grid.Row="7" Grid.Column="1" WidthRequest="90" TranslationX="40" HeightRequest="9" Fill="#555555" />
+                <Rectangle Grid.Row="8" Grid.Column="1" WidthRequest="9" HeightRequest="90" TranslationY="-30" Fill="#555555"/>
+                <Rectangle Grid.Row="10" Grid.Column="2" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
 
-                <!--#region Holy Row 1 -->
+                <!--#region Grid Row 1 -->
 
                 <Grid Grid.Row="1"
                       Grid.Column="1">
@@ -235,7 +242,7 @@
                 <!--#region Holy Row 2-->
 
                 <Grid Grid.Row="2"
-                      Grid.Column="2">
+                      Grid.Column="1">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[3].DisplayIconPath}"/>
@@ -268,7 +275,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2"
-                      Grid.Column="3">
+                      Grid.Column="2">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[4].DisplayIconPath}"/>
@@ -299,12 +306,9 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <!--#endregion-->
 
-                <!--#region Holy Row 3-->
-
-                <Grid Grid.Row="3"
-                      Grid.Column="1">
+                <Grid Grid.Row="2"
+                      Grid.Column="3">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[5].DisplayIconPath}"/>
@@ -336,8 +340,12 @@
                     </Label>
                 </Grid>
 
+                <!--#endregion-->
+
+                <!--#region Grid Row 3-->
+                
                 <Grid Grid.Row="3"
-                      Grid.Column="2">
+                      Grid.Column="1">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[6].DisplayIconPath}"/>
@@ -370,7 +378,7 @@
                 </Grid>
 
                 <Grid Grid.Row="3"
-                      Grid.Column="4">
+                      Grid.Column="2">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[7].DisplayIconPath}"/>
@@ -401,12 +409,9 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <!--#endregion-->
 
-                <!--#region Holy Row 4-->
-
-                <Grid Grid.Row="4"
-                      Grid.Column="1">
+                <Grid Grid.Row="3"
+                      Grid.Column="3">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[8].DisplayIconPath}"/>
@@ -438,6 +443,10 @@
                     </Label>
                 </Grid>
 
+                <!--#endregion-->
+
+                <!--#region Grid Row 4-->
+                
                 <Grid Grid.Row="4"
                       Grid.Column="2">
 
@@ -503,12 +512,9 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <!--#endregion-->
 
-                <!--#region Holy Row 5-->
-
-                <Grid Grid.Row="5"
-                      Grid.Column="1">
+                <Grid Grid.Row="4"
+                      Grid.Column="4">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[11].DisplayIconPath}"/>
@@ -540,8 +546,12 @@
                     </Label>
                 </Grid>
 
+                <!--#endregion-->
+
+                <!--#region Grid Row 5-->
+                
                 <Grid Grid.Row="5"
-                      Grid.Column="2">
+                      Grid.Column="1">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[12].DisplayIconPath}"/>
@@ -574,7 +584,7 @@
                 </Grid>
 
                 <Grid Grid.Row="5"
-                      Grid.Column="3">
+                      Grid.Column="2">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[13].DisplayIconPath}"/>
@@ -608,12 +618,8 @@
                     </Label>
                 </Grid>
 
-                <!--#endregion-->
-
-                <!--#region Holy Row 6-->
-
-                <Grid Grid.Row="6"
-                      Grid.Column="1">
+                <Grid Grid.Row="5"
+                      Grid.Column="3">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[14].DisplayIconPath}"/>
@@ -645,8 +651,8 @@
                     </Label>
                 </Grid>
 
-                <Grid Grid.Row="6"
-                      Grid.Column="3">
+                <Grid Grid.Row="5"
+                      Grid.Column="4">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[15].DisplayIconPath}"/>
@@ -679,9 +685,9 @@
                 </Grid>
                 <!--#endregion-->
 
-                <!--#region Holy Row 7-->
+                <!--#region Grid Row 6-->
 
-                <Grid Grid.Row="7"
+                <Grid Grid.Row="6"
                       Grid.Column="1">
 
                     <Image Style="{StaticResource TalentButtonImage}"
@@ -714,8 +720,8 @@
                     </Label>
                 </Grid>
 
-                <Grid Grid.Row="7"
-                      Grid.Column="2">
+                <Grid Grid.Row="6"
+                      Grid.Column="3">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[17].DisplayIconPath}"/>
@@ -747,8 +753,12 @@
                     </Label>
                 </Grid>
 
+                <!--#endregion-->
+
+                <!--#region Grid Row 7-->
+
                 <Grid Grid.Row="7"
-                      Grid.Column="3">
+                      Grid.Column="2">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[18].DisplayIconPath}"/>
@@ -779,12 +789,9 @@
                         </Label.FormattedText>
                     </Label>
                 </Grid>
-                <!--#endregion-->
 
-                <!--#region Holy Row 8-->
-
-                <Grid Grid.Row="8"
-                      Grid.Column="1">
+                <Grid Grid.Row="7"
+                      Grid.Column="3">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[19].DisplayIconPath}"/>
@@ -816,9 +823,12 @@
                     </Label>
                 </Grid>
 
+                <!--#endregion-->
+
+                <!--#region Holy Row 8-->
 
                 <Grid Grid.Row="8"
-                      Grid.Column="2">
+                      Grid.Column="1">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[20].DisplayIconPath}"/>
@@ -994,7 +1004,7 @@
 
 
                 <Grid Grid.Row="10"
-                      Grid.Column="2">
+                      Grid.Column="3">
 
                     <Image Style="{StaticResource TalentButtonImage}"
                            Source="{Binding Talents[25].DisplayIconPath}"/>

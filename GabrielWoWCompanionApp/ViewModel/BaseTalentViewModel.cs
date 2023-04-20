@@ -34,6 +34,9 @@
         internal int totalTalentCount = 0;                  // Variable to Store the Total Talent Count on This Page
 
         [ObservableProperty]
+        internal int specilizationTalentCount = 0;          // Variable to Store Current Specilization Talent Count
+
+        [ObservableProperty]
         internal bool addTalentFlag = true;                 // Flag to Denote the Talent Selection Mode   
 
         public ObservableCollection<Talent> Talents { get; set; } // Collection to Populate View Data
@@ -62,7 +65,7 @@
 
                     IncrementTalents(Talents, talentIndex);
                     IncrementProfileTalents(talentIndex);
-                    TotalTalentCount++;
+                    UpdateProfileTotalCount();
                 }
             }
             else
@@ -73,14 +76,18 @@
 
                     DecrementTalents(Talents, talentIndex);
                     DecrementProfileTalents(talentIndex);
-
-                    TotalTalentCount--;
+                    UpdateProfileTotalCount();
                 }
             }
         }
         #endregion
 
         #region Void/Action Methods
+        internal void UpdateProfileTotalCount()
+        {
+            TotalTalentCount = profileService.Profiles[selectedProfile].TotalCount;
+        }
+
         internal void LoadTalents(Specilization specilization)
         {
             if (specilization == Specilization.Discipline)
@@ -101,12 +108,14 @@
         internal void IncrementTalents(ObservableCollection<Talent> talents, int index)
         {
             talents[index].CurrentRank++;
+            SpecilizationTalentCount++;
             TierValues[talents[index].TotalRequiredTalents]++;
         }
 
         internal void DecrementTalents(ObservableCollection<Talent> talents, int index)
         {
             talents[index].CurrentRank--;
+            specilizationTalentCount--;
             TierValues[talents[index].TotalRequiredTalents]--;
         }
 
@@ -154,9 +163,9 @@
                 return CheckDependantTalent(talent);
         }
         internal bool BelowPointCap(Talent talent) => talent.CurrentRank < talent.MaxRank;
-        internal bool RequiredPointsAllocated(Talent talent) => talent.TotalRequiredTalents <= TotalTalentCount;
+        internal bool RequiredPointsAllocated(Talent talent) => talent.TotalRequiredTalents <= Talents.First().TotalCount;
         internal bool CheckTalentLimit() => TotalTalentCount < 71;
-        internal bool AbovePointFloor() => TotalTalentCount > 0;
+        internal bool AbovePointFloor() => Talents.First().TotalCount > 0;
         internal bool CheckTalentTier(Talent talent)
         {
             return talent.TotalRequiredTalents == TierValues.LastOrDefault(x => x.Value > 0).Key ? true
@@ -168,7 +177,7 @@
         #region Property Changed Events
         partial void OnTotalTalentCountChanged(int value)
         {
-            for (int i = 0; i < Talents.Count; i++) { Talents[i].TotalCount = TotalTalentCount; }
+            for (int i = 0; i < Talents.Count; i++) { Talents[i].TotalCount = SpecilizationTalentCount; }
         }
         #endregion
 

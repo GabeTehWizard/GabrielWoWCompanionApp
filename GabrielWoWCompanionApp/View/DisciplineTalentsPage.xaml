@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:GabrielWoWCompanionApp.Model"
+             xmlns:viewmode="clr-namespace:GabrielWoWCompanionApp.ViewModel"
+             xmlns:converters="clr-namespace:GabrielWoWCompanionApp.Converters"
+             x:DataType="viewmode:DisciplineTalentsPageViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2021/toolkit"
              x:Class="GabrielWoWCompanionApp.View.DisciplineTalentsPage"
              Title="DisciplineTalentsPage">
 
@@ -21,27 +26,1088 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <Grid BackgroundColor="#1F1F1F">
+    <ContentPage.Resources>
+        <converters:GrayscaleConverter x:Key="GrayscaleConverter" />
+        <converters:AddTalentBorderConverter x:Key="AddTalentBorderConverter"/>
+        <converters:MinusTalentBorderConverter x:Key="MinusTalentBorderConverter"/>
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="#1F1F1F"
+          ColumnDefinitions="5*, 90*, 5*"
+          RowDefinitions="1*, 7*, 88*, 4*">
+
         <Border BackgroundColor="#1F1F1F" 
             Stroke="#FFF" 
             StrokeThickness="0.1" 
             VerticalOptions="Start" 
             HeightRequest="1" 
-            Margin="0,0,0,1"/>
+            Margin="0,0,0,1"
+            Grid.ColumnSpan="3"/>
 
-        <Grid>
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="3"
+              VerticalOptions="Center"
+              ColumnDefinitions="5*,5*,38*, 47*, 5*">
 
-            <Label Text="Talent Content Here!" 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center"
-                   TextColor="White"/>
+            <Image HeightRequest="20"
+                   Grid.Column="1"
+                   WidthRequest="20"
+                   Source="pws_icon.png"/>
+
+            <Label Text="Discipline"
+                   Grid.Column="2"
+                   TextColor="White"
+                   FontFamily="Schib_Medium"
+                   FontSize="18"
+                   Margin="8,0,0,3"/>
+
+            <HorizontalStackLayout Spacing="5"
+                                   Grid.Column="3"
+                                   HorizontalOptions="EndAndExpand">
+
+                <HorizontalStackLayout Spacing="4">
+
+                    <Button HeightRequest="22"
+                            WidthRequest="22"
+                            FontAttributes="Bold"
+                            Padding="0"
+                            CornerRadius="120"
+                            BackgroundColor="#027324"
+                            Text="+"
+                            TextColor="Black"
+                            BorderColor="{Binding AddTalentFlag, Converter={converters:AddTalentBorderConverter}}"
+                            BorderWidth="1"
+                            Command="{Binding ChangeSelectionModeCommand}"
+                            CommandParameter="Add"/>
+
+                    <Button Grid.Column="3"
+                            HeightRequest="22"
+                            WidthRequest="22"
+                            FontAttributes="Bold"
+                            Padding="0"
+                            CornerRadius="120"
+                            BackgroundColor="#ff3632"
+                            BorderColor="{Binding AddTalentFlag, Converter={converters:MinusTalentBorderConverter}}"
+                            BorderWidth="1"
+                            Text="-"
+                            TextColor="Black"
+                            Margin="0,0,4,0"
+                            Command="{Binding ChangeSelectionModeCommand}"
+                            CommandParameter="Subtract"/>
+                </HorizontalStackLayout>
+
+                <Label Text="{Binding TotalTalentCount}"
+                       HorizontalOptions="End"
+                       TextColor="Wheat"
+                       FontSize="18"
+                       Margin="0,0,8,0"
+                       FontFamily="Schib_Medium"/>
+
+                <Button Text="X"
+                        HorizontalOptions="Start"
+                        Padding="0"
+                        BackgroundColor="#C0AA87"
+                        TextColor="Black"
+                        Grid.Column="4"
+                        CornerRadius="120"
+                        HeightRequest="22"
+                        WidthRequest="22"/>
+            </HorizontalStackLayout>
         </Grid>
+
+
+        <ScrollView Grid.Column="1"
+                    Grid.Row="2">
+
+            <Grid RowDefinitions=".5*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, 1*, .5"
+                  ColumnDefinitions=".3*, 1*, 1*, 1*, 1*, .3*">
+
+                <Image Source="disc_talent.png"
+                       Grid.RowSpan="12"
+                       Grid.ColumnSpan="6"/>
+
+                <Rectangle Grid.Row="4" Grid.Column="3" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+                <Rectangle Grid.Row="6" Grid.Column="2" WidthRequest="9" HeightRequest="100" Fill="#555555"/>
+
+                <!--#region Disc Row 1 -->
+
+                <Grid Grid.Row="1"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[0].DisplayIconPath}" />
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[0].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="0"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[0].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[0].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[1].DisplayIconPath}" />
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[1].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="1"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[1].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[1].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 2-->
+                
+                <Grid Grid.Row="2"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[2].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[2].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="2"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[2].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[2].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[3].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[3].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="3"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[3].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[3].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[4].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[4].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="4"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[4].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[4].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="4">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[5].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[5].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="5"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[5].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[5].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 3-->
+                
+                <Grid Grid.Row="3"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[6].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[6].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="6"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[6].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[6].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[7].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[7].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="7"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[7].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[7].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[8].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[8].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="8"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[8].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[8].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 4-->
+                
+                <Grid Grid.Row="4"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[9].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[9].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="9"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[9].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[9].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="4"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[10].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[10].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="10"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[10].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[10].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="4"
+                      Grid.Column="4">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[11].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[11].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="11"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[11].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[11].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 5-->
+                
+                <Grid Grid.Row="5"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[12].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[12].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="12"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[12].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[12].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="5"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[13].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[13].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="13"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[13].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[13].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="5"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[14].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[14].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="14"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[14].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[14].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 6-->
+
+                <Grid Grid.Row="6"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[15].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[15].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="15"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[15].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[15].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="6"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[16].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[16].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="16"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[16].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[16].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 7-->
+                
+                <Grid Grid.Row="7"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[17].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[17].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="17"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[17].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[17].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="7"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[18].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[18].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="18"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[18].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[18].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="7"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[19].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[19].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="19"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[19].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[19].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 8-->
+                
+                <Grid Grid.Row="8"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[20].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[20].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="20"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[20].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[20].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+
+                <Grid Grid.Row="8"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[21].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[21].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="21"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[21].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[21].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="8"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[22].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[22].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="22"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[22].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[22].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Disc Row 9-->
+
+                <Grid Grid.Row="9"
+                      Grid.Column="1">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[23].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[23].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="23"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[23].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[23].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+
+                <Grid Grid.Row="9"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[24].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[24].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="24"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[24].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[24].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Grid Grid.Row="9"
+                      Grid.Column="3">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[25].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[25].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="25"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[25].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[25].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                
+                <!--#endregion-->
+
+                <!--#region Grid Row 10-->
+
+                <Grid Grid.Row="10"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[26].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[26].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="26"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[26].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[26].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Grid Row 11-->
+                <Grid Grid.Row="11"
+                      Grid.Column="2">
+
+                    <Image Style="{StaticResource TalentButtonImage}"
+                           Source="{Binding Talents[27].DisplayIconPath}"/>
+
+                    <Button Style="{StaticResource TalentButtonStyle}"
+                            ToolTipProperties.Text="{Binding Talents[27].Description}"
+                            Command="{Binding ModifyTalentRankCommand}"
+                            CommandParameter="26"/>
+
+                    <Label Style="{StaticResource TalentRankLabel}"
+                           Grid.Row="1"
+                           Grid.Column="2">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding Talents[27].CurrentRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="/" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                                <Span Text="{Binding Talents[27].MaxRank}" 
+                                      Style="{StaticResource TalentRankSpan}"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+                <!--#endregion-->
+
+            </Grid>
+        </ScrollView>
+
 
         <Border BackgroundColor="#1F1F1F" 
             Stroke="#FFF" 
             StrokeThickness="0.1" 
             VerticalOptions="End" 
             HeightRequest="1" 
-            Margin="0,1,0,0"/>
+            Margin="0,1,0,0"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"/>
     </Grid>
 </ContentPage>

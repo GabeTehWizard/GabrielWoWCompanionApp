@@ -1037,7 +1037,7 @@
                            Source="{Binding Talents[26].DisplayIconPath}"/>
 
                     <Button Style="{StaticResource TalentButtonStyle}"
-                            ToolTipProperties.Text="{Binding Talents[27].Description}"
+                            ToolTipProperties.Text="{Binding Talents[26].Description}"
                             Command="{Binding ModifyTalentRankCommand}"
                             CommandParameter="26"/>
 

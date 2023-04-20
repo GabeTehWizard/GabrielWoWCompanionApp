@@ -71,6 +71,7 @@
 	  <None Remove="Resources\Images\desperate_prayer_icon.jpg" />
 	  <None Remove="Resources\Images\devouring_plague_icon.jpg" />
 	  <None Remove="Resources\Images\discipline_talent.jpg" />
+	  <None Remove="Resources\Images\disc_talent.png" />
 	  <None Remove="Resources\Images\dispersion_icon.jpg" />
 	  <None Remove="Resources\Images\divine_aegis_icon.jpg" />
 	  <None Remove="Resources\Images\divine_fury_icon.jpg" />
@@ -246,6 +247,7 @@
 	  <None Remove="Resources\Images\xt_icon.jpg" />
 	  <None Remove="Resources\Images\xyrella_shadow.jpg" />
 	  <None Remove="Resources\Images\xyrella_shadow_dark.jpeg" />
+	  <None Remove="Resources\Images\xyrella_talent.png" />
 	  <None Remove="Resources\Images\yogg_icon.jpg" />
 	</ItemGroup>
 
