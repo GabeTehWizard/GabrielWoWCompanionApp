@@ -14,6 +14,13 @@ public partial class TalentsPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await viewModel.InitializeTalentsAsync();
+        try
+        {
+            await viewModel.InitializeTalentsAsync();
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Page Load Error", ex.Message, "OK");
+        }
     }
 }

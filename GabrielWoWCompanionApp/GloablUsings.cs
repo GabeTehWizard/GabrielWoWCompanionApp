@@ -1,6 +1,7 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using GabrielWoWCompanionApp.Model;
+global using GabrielWoWCompanionApp.Utilities;
 global using GabrielWoWCompanionApp.ViewModel;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
@@ -10,3 +11,4 @@ global using System.Text.Json;
 global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Views;
 global using GabrielWoWCompanionApp.Services;
+global using Newtonsoft.Json;

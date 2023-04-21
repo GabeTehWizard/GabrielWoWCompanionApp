@@ -42,33 +42,50 @@ namespace GabrielWoWCompanionApp.Model
         #endregion
 
         #region Action / Void Methods
+
         public void ReplaceDescription()                    // Method for the Description Display Based on Current Rank
         {
-            if (TalentModifier3 != 0)                       // For Focused Will Talent
+            try
             {
-                this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1), Math.Round(currentRank * TalentModifier2, 1) + 1, Math.Round(currentRank * TalentModifier3, 1) + 2);
+                if (TalentModifier3 != 0)                       // For Focused Will Talent
+                {
+                    this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1), Math.Round(currentRank * TalentModifier2, 1) + 1, Math.Round(currentRank * TalentModifier3, 1) + 2);
+                }
+                else if (TalentModifier2 != 0)
+                    this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1) + (this.Name == "Rapture" ? 1 : 0), Math.Round(currentRank * TalentModifier2, 1));
+                else
+                    this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1));
             }
-            else if (TalentModifier2 != 0)
-                this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1) + (this.Name == "Rapture" ? 1 : 0), Math.Round(currentRank * TalentModifier2, 1));
-            else
-                this.Description = string.Format(DescriptionTemplate, Math.Round(currentRank * TalentModifier, 1));
+            catch (Exception)
+            {
+                throw new Exception($"There was a problem updating talent: {this.Name}.");
+            }
         }
 
         public void ReplaceIcon()                           // Method to Replace the Talent Icon Path if the Total Count for the Specific Talent Set is at the Threshold
         {
-            if (this.TotalCount < TotalRequiredTalents || this.TotalCount == 71 || this.PreRequisitieTalent != null && this.PreRequisitieTalent.CurrentRank < this.PreRequisitieTalent.MaxRank)
+            try
             {
-                if (this.CurrentRank != 0)
-                    this.DisplayIconPath = this.IconPath;
+                if (this.TotalCount < TotalRequiredTalents || this.TotalCount == 71 || this.PreRequisitieTalent != null && this.PreRequisitieTalent.CurrentRank < this.PreRequisitieTalent.MaxRank)
+                {
+                    if (this.CurrentRank != 0)
+                        this.DisplayIconPath = this.IconPath;
+                    else
+                        this.DisplayIconPath = this.GrayIconPath;
+                }
                 else
-                    this.DisplayIconPath = this.GrayIconPath;
+                    this.DisplayIconPath = this.IconPath;
             }
-            else
-                this.DisplayIconPath = this.IconPath;
+            catch (Exception)
+            {
+                throw new Exception($"There was a problem updating talent icon: {this.Name}.");
+            }
         }
+
         #endregion
 
         #region Event Methods / OnChanged
+
         partial void OnTotalCountChanged(int value)         // Change Talent Icon from Gray => Coloured and Vice Versa
         {
             ReplaceIcon();

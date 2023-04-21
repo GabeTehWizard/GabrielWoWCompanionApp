@@ -8,6 +8,7 @@ namespace GabrielWoWCompanionApp.Services;
 public  class WarcraftLogsService
 {
     #region Data Fields
+
     int killsLogged;                                    // Field to Store Boss Kills Logged                           
     decimal allStarPoints;                              // Field to Store Today's All Star Points
     decimal rank;                                       // Field to Store Today's Rank
@@ -19,16 +20,20 @@ public  class WarcraftLogsService
     string apiKey = "8f7cffbff18ed8b91f25f5580f3f0e6a"; // My Custom Api Key from Warcraft Logs Website
 
     HttpClient httpClient; // Client to Connect to HTTP Server
+
     #endregion
 
     #region Constructors
+
     public WarcraftLogsService()
     {
         httpClient = new HttpClient();
     }
+
     #endregion
 
-    #region Methods
+    #region Api Methods
+
     // API Call to Retrieve Character Parses (My Character)
     public async Task<List<HealingLogs>> GetRankings(string spec, string metric)
     {
@@ -40,12 +45,17 @@ public  class WarcraftLogsService
         {
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             parseList = await response.Content.ReadFromJsonAsync<List<HealingLogs>>(options);
+
+            // Filter the logs
+            parseList = parseList.Where(p => p.Spec == spec && p.EncounterName != "Flame Leviathan" && p.Size == 25).ToList();
+
+            return parseList;
         }
-
-        // Filter the logs
-        parseList = parseList.Where(p => p.Spec == spec && p.EncounterName != "Flame Leviathan" && p.Size == 25).ToList();
-
-        return parseList;
+        else
+        {
+            var ex = Jeeves.CreateApiException(response);
+            throw ex;
+        }
     }
 
     // API Call to Retrieve the Total Kills Recorded (These Totals Are Updated Daily)
@@ -63,8 +73,11 @@ public  class WarcraftLogsService
             var parseList = await response.Content.ReadFromJsonAsync<List<HealingLogs>>(options);
             return parseList.Where(p => p.Size == 25).ToList().Count;
         }
-
-        return killsLogged;
+        else
+        {
+            var ex = Jeeves.CreateApiException(response);
+            throw ex;
+        }
     }
 
     // Rather than Using the API, I get this Specific Data Directly from the Website Because it is not Accessible in their V1 API
@@ -89,6 +102,11 @@ public  class WarcraftLogsService
         {
             content = await response.Content.ReadAsStringAsync();
         }
+        else
+        {
+            var ex = Jeeves.CreateApiException(response);
+            throw ex;
+        }
 
         if (content == "") return new List<decimal>() { allStarPoints, rank, perfAverage };
 
@@ -109,5 +127,6 @@ public  class WarcraftLogsService
 
         return new List<decimal>() { allStarPoints, rank, perfAverage };
     }
+
     #endregion
 }

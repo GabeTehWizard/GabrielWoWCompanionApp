@@ -15,7 +15,14 @@ public partial class ShadowTalentsPage : ContentPage
         base.OnAppearing();
         if (BindingContext is ShadowTalentsPageViewModel viewModel)
         {
-            viewModel.OnAppearing();
+            try
+            {
+                viewModel.OnAppearing();
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Page Load Error", ex.Message, "OK");
+            }
         }
     }
 
@@ -33,10 +40,17 @@ public partial class ShadowTalentsPage : ContentPage
     {
         if (BindingContext is ShadowTalentsPageViewModel viewModel)
         {
-            if (viewModel.selectedProfile != viewModel.profileService.SelectedProfile)
+            try
             {
-                viewModel.selectedProfile = viewModel.profileService.SelectedProfile;
-                viewModel.LoadTalents(viewModel.PageSpecilization);
+                if (viewModel.selectedProfile != viewModel.profileService.SelectedProfile)
+                {
+                    viewModel.selectedProfile = viewModel.profileService.SelectedProfile;
+                    viewModel.LoadTalents(viewModel.PageSpecilization);
+                }
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Page Load Error", ex.Message, "OK");
             }
         }
     }

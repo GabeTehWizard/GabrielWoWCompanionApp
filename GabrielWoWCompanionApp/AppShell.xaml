@@ -17,18 +17,6 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!--<Shell.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Image Source="wotlk_icon.png"
-                   Aspect="AspectFill"
-                   WidthRequest="50"
-                   HeightRequest="50"/>
-            <Label TextColor="Wheat"
-                   Text="{Binding CurrentItem.Title, Source={x:Reference shell}}"
-                   VerticalTextAlignment="Center"/>
-        </StackLayout>
-    </Shell.TitleView>-->
-
     <TabBar>
         
         <Tab Title="Home"
