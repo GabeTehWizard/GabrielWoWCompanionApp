@@ -2,17 +2,19 @@
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
+// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
 namespace GabrielWoWCompanionApp.Services;
 
 public  class WarcraftLogsService
 {
     #region Data Fields
-    // Variables for Log Data Calculations
-    int killsLogged;
-    decimal allStarPoints;
-    decimal rank;
-    decimal perfAverage;
-    List<HealingLogs> parseList = new();
+    int killsLogged;                                    // Field to Store Boss Kills Logged                           
+    decimal allStarPoints;                              // Field to Store Today's All Star Points
+    decimal rank;                                       // Field to Store Today's Rank
+    decimal perfAverage;                                // Field to Store Today's Performance Average
+    List<HealingLogs> parseList = new();                // Field to Store a List of Logs
+
+    // Api URL and Key
     string warcraftLogsApiURL = "https://classic.warcraftlogs.com/v1";
     string apiKey = "8f7cffbff18ed8b91f25f5580f3f0e6a"; // My Custom Api Key from Warcraft Logs Website
 
@@ -27,6 +29,7 @@ public  class WarcraftLogsService
     #endregion
 
     #region Methods
+    // API Call to Retrieve Character Parses (My Character)
     public async Task<List<HealingLogs>> GetRankings(string spec, string metric)
     {
         var url = $"{warcraftLogsApiURL}/rankings/character/Cla%C3%AFra/Whitemane/US?metric={metric}&timeframe=historical&api_key={apiKey}";
@@ -45,9 +48,10 @@ public  class WarcraftLogsService
         return parseList;
     }
 
+    // API Call to Retrieve the Total Kills Recorded (These Totals Are Updated Daily)
     public async Task<int> GetKillsLogged()
     {
-        if (killsLogged > 0) return killsLogged;
+        if (killsLogged > 0) return killsLogged;        // Return if the Kills Logged Data has Been Loaded Into the App Today Already
 
         var url = $"{warcraftLogsApiURL}/parses/character/Cla%C3%AFra/Whitemane/US?metric=hps&class=7&spec=1&timeframe=historical&api_key={apiKey}";
 
@@ -63,6 +67,7 @@ public  class WarcraftLogsService
         return killsLogged;
     }
 
+    // Rather than Using the API, I get this Specific Data Directly from the Website Because it is not Accessible in their V1 API
     public async Task<List<decimal>> GetAllStarPoints(string spec, string metric)
     {
         if (allStarPoints != 0) return new List<decimal>() { allStarPoints, rank, perfAverage };
@@ -94,6 +99,7 @@ public  class WarcraftLogsService
                 .Where(n => n.Name == "script" || n.Name == "style" || n.Name == "#comment")
                 .ToList()
                 .ForEach(n => n.Remove());
+
 
         var aspNode = doc.DocumentNode.SelectSingleNode("//div[@class='header-zone-ranks']");
         decimal.TryParse(aspNode.Descendants("span").FirstOrDefault(x => x.Attributes["class"].Value == "primary header-rank")?.InnerText, out allStarPoints);

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
 namespace GabrielWoWCompanionApp.Services;
 
+/// <summary>
+/// App Data Used to Populate Talent Data
+/// </summary>
 public class TalentService
 {
     public static ObservableCollection<Talent> GetDisciplineTalents()

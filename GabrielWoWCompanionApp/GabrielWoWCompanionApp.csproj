@@ -71,6 +71,7 @@
 	  <None Remove="Resources\Images\desperate_prayer_icon.jpg" />
 	  <None Remove="Resources\Images\devouring_plague_icon.jpg" />
 	  <None Remove="Resources\Images\discipline_talent.jpg" />
+	  <None Remove="Resources\Images\disc_circle.png" />
 	  <None Remove="Resources\Images\disc_talent.png" />
 	  <None Remove="Resources\Images\dispersion_icon.jpg" />
 	  <None Remove="Resources\Images\divine_aegis_icon.jpg" />
@@ -169,6 +170,7 @@
 	  <None Remove="Resources\Images\healing_focus_icon.jpg" />
 	  <None Remove="Resources\Images\healing_prayers_icon.jpg" />
 	  <None Remove="Resources\Images\hodir_icon.png" />
+	  <None Remove="Resources\Images\holy_circle.png" />
 	  <None Remove="Resources\Images\holy_concentration_icon.jpg" />
 	  <None Remove="Resources\Images\holy_icon.jpg" />
 	  <None Remove="Resources\Images\holy_reach_icon.jpg" />
@@ -215,6 +217,7 @@
 	  <None Remove="Resources\Images\shadowform_icon.jpg" />
 	  <None Remove="Resources\Images\shadow_affinity_icon.jpg" />
 	  <None Remove="Resources\Images\shadow_app_dark.jpeg" />
+	  <None Remove="Resources\Images\shadow_circle.png" />
 	  <None Remove="Resources\Images\shadow_focus_icon.jpg" />
 	  <None Remove="Resources\Images\shadow_icon.jpg" />
 	  <None Remove="Resources\Images\shadow_power_icon.jpg" />

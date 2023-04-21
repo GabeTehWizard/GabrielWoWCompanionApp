@@ -1,4 +1,5 @@
-﻿namespace GabrielWoWCompanionApp.ViewModel
+﻿// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
+namespace GabrielWoWCompanionApp.ViewModel
 {
     public partial class BaseTalentViewModel : BaseViewModel
     {
@@ -53,6 +54,30 @@
         }
 
         [RelayCommand]
+        public void ClearTalents()
+        {
+            SpecilizationTalentCount = 0;
+            int talentSum = TierValues.Sum(x => x.Value);
+            TotalTalentCount = profileService.Profiles[selectedProfile].TotalCount;
+            TotalTalentCount -= talentSum;
+            profileService.Profiles[selectedProfile].TotalCount -= talentSum;
+            TierValues = TierValues.Keys.ToDictionary(key => key, value => 0);
+            for(int i = Talents.Count - 1; i > -1; i--)
+            {
+                Talents[i].CurrentRank = 0;
+                Talents[i].TotalCount = 0;
+                if (PageSpecilization == Specilization.Discipline)
+                    profileService.Profiles[selectedProfile].DisciplineTalentArr[i] = 0;
+                else if (PageSpecilization == Specilization.Holy)
+                    profileService.Profiles[selectedProfile].HolyTalentArr[i] = 0;
+                else if (PageSpecilization == Specilization.Shadow)
+                    profileService.Profiles[selectedProfile].ShadowTalentArr[i] = 0;
+
+                if (Talents[i].TotalRequiredTalents != 0) Talents[i].DisplayIconPath = Talents[i].GrayIconPath;
+            }
+        }
+
+        [RelayCommand] // Command to Update Talent Based Objects on Button Click
         public void ModifyTalentRank(object index)
         {
             if (!int.TryParse(index.ToString(), out int talentIndex)) return;
@@ -64,7 +89,7 @@
                     if (CheckPrerequisiteTalent(Talents[talentIndex])) return;
 
                     IncrementTalents(Talents, talentIndex);
-                    IncrementProfileTalents(talentIndex);
+                    ModifyProfileTalents(talentIndex);
                     UpdateProfileTotalCount();
                 }
             }
@@ -75,7 +100,7 @@
                     if (CheckDependantTalents(Talents[talentIndex])) return;
 
                     DecrementTalents(Talents, talentIndex);
-                    DecrementProfileTalents(talentIndex);
+                    ModifyProfileTalents(talentIndex);
                     UpdateProfileTotalCount();
                 }
             }
@@ -83,12 +108,12 @@
         #endregion
 
         #region Void/Action Methods
-        internal void UpdateProfileTotalCount()
+        internal void UpdateProfileTotalCount() // Method to Increment the Total Count of Profile Object
         {
             TotalTalentCount = profileService.Profiles[selectedProfile].TotalCount;
         }
 
-        internal void LoadTalents(Specilization specilization)
+        internal void LoadTalents(Specilization specilization) // Method Used to Load a Profile's Talent Settings Into the Page Talents Collection
         {
             if (specilization == Specilization.Discipline)
                 TalentProfileService.LoadTalents(Talents, profileService.Profiles[profileService.SelectedProfile].DisciplineTalentArr, profileService.Profiles[selectedProfile].DisciplineTalentCount);
@@ -105,21 +130,21 @@
             }
         }
 
-        internal void IncrementTalents(ObservableCollection<Talent> talents, int index)
+        internal void IncrementTalents(ObservableCollection<Talent> talents, int index) // Increment Class Level Collections
         {
             talents[index].CurrentRank++;
             SpecilizationTalentCount++;
             TierValues[talents[index].TotalRequiredTalents]++;
         }
 
-        internal void DecrementTalents(ObservableCollection<Talent> talents, int index)
+        internal void DecrementTalents(ObservableCollection<Talent> talents, int index) // Increment Class Level Collections
         {
             talents[index].CurrentRank--;
             specilizationTalentCount--;
             TierValues[talents[index].TotalRequiredTalents]--;
         }
 
-        internal void IncrementProfileTalents(int index)
+        internal void ModifyProfileTalents(int index) // Assign the Profile Talent Array the Current Talent Ranks
         {
             if (PageSpecilization == Specilization.Discipline)
                 profileService.Profiles[profileService.SelectedProfile].DisciplineTalentArr[index] = Talents[index].CurrentRank;
@@ -128,19 +153,10 @@
             else if (PageSpecilization == Specilization.Shadow)
                 profileService.Profiles[profileService.SelectedProfile].ShadowTalentArr[index] = Talents[index].CurrentRank;
 
-            profileService.Profiles[profileService.SelectedProfile].TotalCount++;
-        }
-
-        internal void DecrementProfileTalents(int index)
-        {
-            if (PageSpecilization == Specilization.Discipline)
-                profileService.Profiles[profileService.SelectedProfile].DisciplineTalentArr[index] = Talents[index].CurrentRank;
-            else if (PageSpecilization == Specilization.Holy)
-                profileService.Profiles[profileService.SelectedProfile].HolyTalentArr[index] = Talents[index].CurrentRank;
-            else if (PageSpecilization == Specilization.Shadow)
-                profileService.Profiles[profileService.SelectedProfile].ShadowTalentArr[index] = Talents[index].CurrentRank;
-
-            profileService.Profiles[profileService.SelectedProfile].TotalCount--;
+            if (AddTalentFlag)
+                profileService.Profiles[profileService.SelectedProfile].TotalCount++;
+            else
+                profileService.Profiles[profileService.SelectedProfile].TotalCount--;
         }
         #endregion
 
@@ -175,7 +191,7 @@
         #endregion
 
         #region Property Changed Events
-        partial void OnTotalTalentCountChanged(int value)
+        partial void OnTotalTalentCountChanged(int value) // Event to Modify Each Talent in the Talent Collection and Invoke the Talent Class Custom Event
         {
             for (int i = 0; i < Talents.Count; i++) { Talents[i].TotalCount = SpecilizationTalentCount; }
         }
@@ -183,10 +199,18 @@
 
         #region Custom Events
 
+        // Declared Delegate/Event to Invoke on Page Navigated To. Unfortunately, there is currently a bug with that method stated by microsoft.
+        // https://github.com/dotnet/maui/issues/8102
+        /// <summary>
+        /// We've moved this issue to the Backlog milestone. This means that it is not going to be worked on for the coming release. We will 
+        /// reassess the backlog following the current release and consider this item at that time. To learn more about our issue management 
+        /// process and to have better expectation regarding different types of issues you can read our Triage Process.
+        /// </summary>
+
         public delegate void CheckProfile();
         public event CheckProfile CheckProfileEvent;
 
-        // To be used for the delegate event on the page behind for Holy Talents
+        // To be used for the delegate event on the page behind for Talents
         public void OnAppearing() { CheckProfileEvent?.Invoke(); }
         #endregion
     }

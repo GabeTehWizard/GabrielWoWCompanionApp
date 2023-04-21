@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:GabrielWoWCompanionApp.Model"
+             xmlns:viewmode="clr-namespace:GabrielWoWCompanionApp.ViewModel"
+             x:DataType="viewmode:TalentsPageViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2021/toolkit"
              x:Class="GabrielWoWCompanionApp.View.TalentsPage"
              Title="TalentsPage">
 
@@ -21,27 +25,125 @@
         </StackLayout>
     </Shell.TitleView>
 
-    <Grid BackgroundColor="#1F1F1F">
-        <Border BackgroundColor="#1F1F1F" 
-            Stroke="#FFF" 
-            StrokeThickness="0.1" 
-            VerticalOptions="Start" 
-            HeightRequest="1" 
-            Margin="0,0,0,1"/>
+    <RefreshView Command="{Binding RefreshTalentsCommand}"
+                 IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView>
+            <Grid BackgroundColor="#1F1F1F">
+            <Border BackgroundColor="#1F1F1F" 
+                Stroke="#FFF" 
+                StrokeThickness="0.1" 
+                VerticalOptions="Start" 
+                HeightRequest="1" 
+                Margin="0,0,0,1"/>
 
-        <Grid>
+            <Grid ColumnDefinitions="20*, 60*, 20*"
+                  RowDefinitions="69*,1*, 30*">
 
-            <Label Text="Talent Content Here!" 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center"
-                   TextColor="White"/>
-        </Grid>
+                <VerticalStackLayout Grid.Row="0"
+                                     Grid.Column="1"
+                                     VerticalOptions="Center">
 
-        <Border BackgroundColor="#1F1F1F" 
-            Stroke="#FFF" 
-            StrokeThickness="0.1" 
-            VerticalOptions="End" 
-            HeightRequest="1" 
-            Margin="0,1,0,0"/>
-    </Grid>
+                    <Image Source="wow_home_icon.png"/>
+
+                    <Entry TextColor="White"
+                           Text="{Binding ProfileName}"
+                           HorizontalOptions="Center"
+                           FontSize="20"
+                           Margin="0, 10,0, 0"/>
+
+
+                        <Button Text="Save Profile"
+                                Command="{Binding SaveProfileCommand}"
+                                VerticalOptions="Center" 
+                                TextColor="White"
+                                Padding="0"
+                                HeightRequest="30"
+                                WidthRequest="200"/>
+
+                        <Label Text="(Scroll To Update Newly Selected Talents Before Saving)"
+                               HorizontalTextAlignment="Center"
+                               TextColor="White"
+                               FontSize="12"
+                               HorizontalOptions="Center"/>
+
+
+                </VerticalStackLayout>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      ColumnDefinitions="33*, 33*, 33*">
+
+                    <VerticalStackLayout Grid.Column="0"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                    
+                        <Image Source="disc_circle.png"
+                               HeightRequest="65"
+                               WidthRequest="65"/>
+
+                        <Label Text="{Binding DiscTalents}"
+                               Margin="0,10,0,0"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                    
+                        <Image Source="holy_circle.png"
+                               HeightRequest="65"
+                               WidthRequest="65"/>
+
+                        <Label Text="{Binding HolyTalents}"
+                               Margin="0,10,0,0"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                    
+                        <Image Source="shadow_circle.png"
+                               HeightRequest="65"
+                               WidthRequest="65"/>
+
+                        <Label Text="{Binding ShadowTalents}"
+                               Margin="0,10,0,0"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Grid>
+            
+                <Rectangle BackgroundColor="White"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           HeightRequest="1"
+                           WidthRequest="300"
+                           Opacity=".3"/>
+
+            </Grid>
+
+            <Border BackgroundColor="#1F1F1F" 
+                Stroke="#FFF" 
+                StrokeThickness="0.1" 
+                VerticalOptions="End" 
+                HeightRequest="1" 
+                Margin="0,1,0,0"/>
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                        IsRunning="{Binding IsBusy}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand"/>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

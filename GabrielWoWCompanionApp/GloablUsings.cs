@@ -9,3 +9,4 @@ global using System.Runtime.CompilerServices;
 global using System.Text.Json;
 global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Views;
+global using GabrielWoWCompanionApp.Services;

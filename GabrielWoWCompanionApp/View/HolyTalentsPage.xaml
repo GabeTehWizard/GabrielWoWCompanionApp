@@ -104,6 +104,7 @@
                        FontFamily="Schib_Medium"/>
                 
                 <Button Text="X"
+                        Command="{Binding ClearTalentsCommand}"
                         HorizontalOptions="Start"
                         Padding="0"
                         BackgroundColor="#C0AA87"

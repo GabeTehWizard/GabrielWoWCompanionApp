@@ -2,11 +2,11 @@
 
 public partial class App : Application
 {
-	public static int sharedTotalCount = 0;
 	public App()
 	{
 		InitializeComponent();
 
+		// Register the Main Page as the AppShell
 		MainPage = new AppShell();
 	}
 }

@@ -1,9 +1,9 @@
-﻿namespace GabrielWoWCompanionApp.ViewModel;
+﻿// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
+namespace GabrielWoWCompanionApp.ViewModel;
 
 public partial class BaseViewModel : ObservableObject
 { 
     [ObservableProperty]
-    //[NotifyPropertyChangedFor(nameof(IsNotBusy))]
     bool isBusy; 
 
     [ObservableProperty]
@@ -13,6 +13,4 @@ public partial class BaseViewModel : ObservableObject
     {
 
     }
-
-    //public bool IsNotBusy => !IsBusy;
 }

@@ -1,4 +1,5 @@
-﻿using GabrielWoWCompanionApp.View;
+﻿// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
+using GabrielWoWCompanionApp.View;
 
 namespace GabrielWoWCompanionApp;
 
@@ -8,6 +9,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
+        // Routes
         Routing.RegisterRoute(nameof(DisciplineTalentsPage), typeof(DisciplineTalentsPage));
         Routing.RegisterRoute(nameof(HolyTalentsPage), typeof(HolyTalentsPage));
         Routing.RegisterRoute(nameof(LogPage), typeof(LogPage));
