@@ -1,5 +1,6 @@
 namespace GabrielWoWCompanionApp.View;
 
+// HolyTalentsPage Bound to the HolyTalentsPageViewModel
 public partial class HolyTalentsPage : ContentPage
 {
     public HolyTalentsPage(HolyTalentsPageViewModel viewModel)

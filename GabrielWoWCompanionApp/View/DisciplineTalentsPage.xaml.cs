@@ -1,5 +1,6 @@
 namespace GabrielWoWCompanionApp.View;
 
+// DisciplineTalentspage Bound to the DisciplineTalentsPageViewModel
 public partial class DisciplineTalentsPage : ContentPage
 {
 	public DisciplineTalentsPage(DisciplineTalentsPageViewModel viewModel)
