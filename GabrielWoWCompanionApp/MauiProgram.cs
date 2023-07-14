@@ -13,7 +13,7 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
-			{
+			{   // Note: All Fonts are Free to Use
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("BreatheFireIv-3zAVZ.ttf", "BreatheFire");
