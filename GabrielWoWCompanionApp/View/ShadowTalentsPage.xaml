@@ -9,6 +9,8 @@
              x:Class="GabrielWoWCompanionApp.View.ShadowTalentsPage"
              Title="ShadowTalentsPage">
 
+
+    <!-- Main Display Page for Shadow Priest Talents -->
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal">
 

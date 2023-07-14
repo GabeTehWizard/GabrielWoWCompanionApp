@@ -9,6 +9,7 @@
              x:Class="GabrielWoWCompanionApp.View.DisciplineTalentsPage"
              Title="DisciplineTalentsPage">
 
+    <!-- Main Display Page for Discipline Priest Talents -->
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal">
 

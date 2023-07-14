@@ -8,6 +8,7 @@
              x:Class="GabrielWoWCompanionApp.View.TalentsPage"
              Title="TalentsPage">
 
+    <!-- Display Page for All Talents, and API connection -->
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal">
 

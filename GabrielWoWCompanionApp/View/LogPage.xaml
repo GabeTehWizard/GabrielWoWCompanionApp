@@ -8,6 +8,7 @@
              x:Class="GabrielWoWCompanionApp.View.LogPage"
              Title="LogPage">
 
+    <!-- Main Display Page for the Warcraft Logs Attachments -->
     <ContentPage.Resources>
         <converters:TruncateConverter x:Key="TruncateConverter" />
         <converters:ValueToColorConverter x:Key="ValueToColorConverter" />

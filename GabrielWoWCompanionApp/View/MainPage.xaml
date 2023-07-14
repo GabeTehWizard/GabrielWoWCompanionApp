@@ -7,6 +7,8 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              Title="MainPage">
 
+    <!-- Main Display Page for the Application used in the App Shell -->
+    
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="#1F1F1F"/>
     </Page.Behaviors>
