@@ -1,4 +1,5 @@
 ﻿namespace GabrielWoWCompanionApp;
+// Code by Gabriel Atienza-Norris
 
 public partial class App : Application
 {

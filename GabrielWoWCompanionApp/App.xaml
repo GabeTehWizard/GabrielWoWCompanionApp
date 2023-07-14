@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GabrielWoWCompanionApp"
              x:Class="GabrielWoWCompanionApp.App">
+    <!-- Application made by Gabriel Atienza-Norris -->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
