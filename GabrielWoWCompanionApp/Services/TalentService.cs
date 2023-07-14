@@ -3,6 +3,7 @@ namespace GabrielWoWCompanionApp.Services;
 
 /// <summary>
 /// App Data Used to Populate Talent Data
+/// Hardcoded so that application can be used offline.
 /// </summary>
 public class TalentService
 {

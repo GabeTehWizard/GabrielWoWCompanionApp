@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter that receives an encounter's string and displays the associated encounter image.
+/// </summary>
 public class StringToImageBossConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

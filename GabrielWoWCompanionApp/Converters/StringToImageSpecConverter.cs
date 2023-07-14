@@ -2,6 +2,9 @@
 
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter that accepts a string and displays a different icon based on the currently selected specialization.
+/// </summary>
 public class StringToImageSpecConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

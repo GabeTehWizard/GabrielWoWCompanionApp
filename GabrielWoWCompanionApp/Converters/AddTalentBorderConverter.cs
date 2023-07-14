@@ -1,7 +1,9 @@
 ﻿using System.Globalization;
-
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter to adjust font-colors based on available skill points.
+/// </summary>
 public class AddTalentBorderConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

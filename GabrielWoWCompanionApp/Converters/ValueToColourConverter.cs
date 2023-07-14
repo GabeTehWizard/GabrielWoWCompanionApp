@@ -3,6 +3,9 @@
 
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter to provide different font colours based on the decimal value passed in.
+/// </summary>
 public class ValueToColorConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

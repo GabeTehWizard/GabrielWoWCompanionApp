@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//Code by Gabriel Atienza-Norris
 
 namespace GabrielWoWCompanionApp.Model
 {
+    /// <summary>
+    /// Data Transfer Object Class used for sending talent data to my personally created API/Database.
+    /// </summary>
     class TalentProfileDTO
     {
         public int ID { get; set; }

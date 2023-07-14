@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GabrielWoWCompanionApp.Utilities
 {
+    /// <summary>
+    /// Class used to display exceptions messages generated from the API/Database Server
+    /// </summary>
     public class ApiException : Exception
     {
         public HttpResponseMessage Response { get; set; }

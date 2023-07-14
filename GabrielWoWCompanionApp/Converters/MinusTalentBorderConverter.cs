@@ -2,6 +2,9 @@
 
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter used to set the colour of a talent when removing talent points.
+/// </summary>
 public class MinusTalentBorderConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

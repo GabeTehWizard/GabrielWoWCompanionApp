@@ -3,7 +3,8 @@ namespace GabrielWoWCompanionApp.Model
 {
     /// <summary>
     /// The HealingLogs class is used to represent the World of Warcraft fight log data from
-    /// warcraft logs.
+    /// warcraft logs. 
+    /// Note: Needs Update for TOGC.
     /// </summary>
     public class HealingLogs 
     {        

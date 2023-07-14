@@ -1,4 +1,4 @@
-﻿// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
+﻿// Code by Gabriel Atienza-Norris, 04/20/2023
 namespace GabrielWoWCompanionApp.Model
 {
     public partial class Talent : ObservableObject

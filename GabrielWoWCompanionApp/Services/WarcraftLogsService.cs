@@ -2,7 +2,7 @@
 using System.Net.Http.Json;
 using static System.Net.WebRequestMethods;
 
-// Code by Gabriel Atienza-Norris, Mobile Final, 04/20/2023
+// Code by Gabriel Atienza-Norris, 04/20/2023
 namespace GabrielWoWCompanionApp.Services;
 
 public  class WarcraftLogsService

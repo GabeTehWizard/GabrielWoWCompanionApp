@@ -8,6 +8,7 @@ namespace GabrielWoWCompanionApp.Model;
 /// Talent Profile Class Intended to Store Profile Data for the Application
 /// Intended for Multiple Proifiles However Do to Page Navigation Bug Known by Microsoft, 
 /// I kept the Application Contained to a Single Profile
+/// Note: The bug is listed in the view models section.
 /// </summary>
 public class TalentProfileService
 {

@@ -2,6 +2,9 @@
 
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter to truncate display values.
+/// </summary>
 public class TruncateConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

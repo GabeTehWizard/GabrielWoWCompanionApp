@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GabrielWoWCompanionApp.Converters;
 
+/// <summary>
+/// Converter to adjust the image path used by the talent objects.
+/// </summary>
 public class GrayscaleConverter : IMultiValueConverter
 {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
